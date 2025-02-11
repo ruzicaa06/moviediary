@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>delete</title>
+</head>
+<body>
+{% block content %}
+    <h2 style="width: 80%; margin: auto">
+    are you sure?
+    </h2>
+    <form  method="post" style="width: 80%; margin: auto">
+        {% csrf_token %}
+        {{ form }}
+        <button class="btn btn-danger" type="submit">delete</button>
+        <a class="btn btn-info" href="">no</a>
+    </form>
+{% endblock %}
+
+</body>
+</html>
