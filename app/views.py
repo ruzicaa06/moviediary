@@ -12,7 +12,7 @@ def add_movie(request):
         if form_data.is_valid():
             movie = form_data.save(commit=False)
             movie.save()
-            return redirect('/')
+            return redirect('/index/')
     return render(request, 'add_movie.html', {'form': MovieForm})
 
 def edit_movie(request, pk):
@@ -21,7 +21,7 @@ def edit_movie(request, pk):
         form_data = MovieForm(data=request.POST, files=request.FILES, instance=movie_instance)
         if form_data.is_valid():
             form_data.save()
-        return redirect('/')
+        return redirect('/index/')
     else:
         movie = MovieForm(instance=movie_instance)
     return render(request, 'edit_movie.html', context={'form': movie})
@@ -31,5 +31,5 @@ def delete_movie(request, pk):
     movie_instance = Movie.objects.filter(id=pk).get()
     if request.method == "POST":
         movie_instance.delete()
-        return redirect('/')
+        return redirect('/index/')
     return render(request, 'delete_movie.html')
